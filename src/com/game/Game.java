@@ -21,8 +21,8 @@ public class Game extends Canvas implements Runnable {
         new Window(WIDTH, HEIGHT, "Giereczka", this);
         hud = new HUD();
 
-        handler.addObject(new Player(WIDTH/2 - 32, HEIGHT/2 - 32, ID.Player));
-        handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy));
+        handler.addObject(new Player(WIDTH/2 - 32, HEIGHT/2 - 32, ID.Player,handler));
+        handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy,handler));
     }
 
     public synchronized void start() {
@@ -62,7 +62,7 @@ public class Game extends Canvas implements Runnable {
             frames++;
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-//                System.out.println("FPS: " + frames);
+                System.out.println("FPS: " + frames);
                 frames = 0;
             }
         }
