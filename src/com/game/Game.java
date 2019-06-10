@@ -11,17 +11,18 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     private boolean running = false;
 
-    private Random r;
+    private Random r = new Random();
     private Handler handler;
+    private HUD hud;
 
     public Game() {
         handler = new Handler();
         this.addKeyListener(new KeyInput(handler));
         new Window(WIDTH, HEIGHT, "Giereczka", this);
+        hud = new HUD();
 
-        r = new Random();
-
-        handler.addObject(new Player(WIDTH/2 - 32, HEIGHT/2 - 32, ID.Player));
+        handler.addObject(new Player(WIDTH/2 - 32, HEIGHT/2 - 32, ID.Player,handler));
+        handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy,handler));
     }
 
     public synchronized void start() {
@@ -41,6 +42,7 @@ public class Game extends Canvas implements Runnable {
 
     @Override
     public void run() {
+        this.requestFocus();
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
         double ns = 1000000000 / amountOfTicks;
@@ -60,7 +62,7 @@ public class Game extends Canvas implements Runnable {
             frames++;
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-//                System.out.println("FPS: " + frames);
+                System.out.println("FPS: " + frames);
                 frames = 0;
             }
         }
@@ -69,6 +71,7 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         handler.tick();
+        hud.tick();
     }
 
     private void render() {
@@ -84,9 +87,14 @@ public class Game extends Canvas implements Runnable {
         g.fillRect(0, 0, WIDTH, HEIGHT);
 
         handler.render(g);
+        hud.render(g);
 
         g.dispose();
         bs.show();
+    }
+
+    public static int clamp(int val, int min, int max) {
+        return Math.max(min, Math.min(max, val));
     }
 
     public static void main(String[] args) {
