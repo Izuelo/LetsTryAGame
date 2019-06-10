@@ -77,7 +77,7 @@ public class Game extends Canvas implements Runnable {
         bs.show();
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         new Game();
     }
 }
