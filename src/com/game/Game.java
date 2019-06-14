@@ -14,15 +14,19 @@ public class Game extends Canvas implements Runnable {
     private Random r = new Random();
     private Handler handler;
     private HUD hud;
+    private Spawn spawner;
 
     public Game() {
         handler = new Handler();
         this.addKeyListener(new KeyInput(handler));
-        new Window(WIDTH, HEIGHT, "Giereczka", this);
-        hud = new HUD();
 
-        handler.addObject(new Player(WIDTH/2 - 32, HEIGHT/2 - 32, ID.Player,handler));
-        handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy,handler));
+        new Window(WIDTH, HEIGHT, "Giereczka", this);
+
+        hud = new HUD();
+        spawner = new Spawn(handler, hud);
+
+        handler.addObject(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler));
+        handler.addObject(new BasicEnemy(r.nextInt(WIDTH + 16), r.nextInt(HEIGHT + 16), ID.BasicEnemy, handler));
     }
 
     public synchronized void start() {
@@ -72,6 +76,7 @@ public class Game extends Canvas implements Runnable {
     private void tick() {
         handler.tick();
         hud.tick();
+        spawner.tick();
     }
 
     private void render() {
@@ -93,8 +98,8 @@ public class Game extends Canvas implements Runnable {
         bs.show();
     }
 
-    public static int clamp(int val, int min, int max) {
-        return Math.max(min, Math.min(max, val));
+    public static int clamp(float val, float min, float max) {
+        return (int) Math.max(min, Math.min(max, val));
     }
 
     public static void main(String[] args) {
