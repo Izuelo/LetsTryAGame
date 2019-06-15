@@ -25,7 +25,7 @@ public class Bullet extends GameObject {
         y += velY;
 
         if (y >= Game.HEIGHT) handler.removeObject(this);
-        handler.addObject(new Trail(x, y, ID.Trail, handler, Color.red, 16, 16, 0.05f));
+        handler.addObject(new Trail(x, y, ID.Trail, handler, Color.red, 18, 18, 0.05f));
     }
 
     public void render(Graphics g) {

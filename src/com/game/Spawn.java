@@ -3,7 +3,6 @@ package com.game;
 import java.util.Random;
 
 public class Spawn {
-
     private Handler handler;
     private HUD hud;
     private Random r = new Random();
@@ -44,5 +43,7 @@ public class Spawn {
         }
     }
 
-
+    public void setScoreKeep(int scoreKeep) {
+        this.scoreKeep = scoreKeep;
+    }
 }

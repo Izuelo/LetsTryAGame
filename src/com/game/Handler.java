@@ -1,11 +1,10 @@
 package com.game;
 
 import java.awt.*;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class Handler {
-
-    LinkedList<GameObject> object = new LinkedList<GameObject>();
+    ArrayList<GameObject> object = new ArrayList<>();
 
     public void tick() {
         for (int i = 0; i < object.size(); i++) {
@@ -17,7 +16,10 @@ public class Handler {
     }
 
     public void render(Graphics g) {
-        object.forEach(obj -> obj.render(g));
+        for (int i = 0; i < object.size(); i++) {
+            GameObject obj = object.get(i);
+            obj.render(g);
+        }
     }
 
     public void addObject(GameObject object) {

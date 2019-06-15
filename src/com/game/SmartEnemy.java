@@ -16,7 +16,7 @@ public class SmartEnemy extends GameObject {
     }
 
     public Rectangle getBounds() {
-        return new Rectangle((int) x, (int) y, 16, 16);
+        return new Rectangle((int) x, (int) y, 18, 18);
     }
 
     public void tick() {
