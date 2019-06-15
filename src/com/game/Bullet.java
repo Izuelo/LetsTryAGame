@@ -1,17 +1,19 @@
 package com.game;
 
 import java.awt.*;
+import java.util.Random;
 
-public class BasicEnemy extends GameObject {
+public class Bullet extends GameObject {
     private Handler handler;
+    private Random r = new Random();
 
-    public BasicEnemy(int x, int y, ID id, Handler handler) {
+    public Bullet(int x, int y, ID id, Handler handler) {
         super(x, y, id);
 
         this.handler = handler;
 
-        velX = 4;
-        velY = 4;
+        velX = (r.nextInt(5 - -5) + -5);
+        velY = 5;
     }
 
     public Rectangle getBounds() {
@@ -22,9 +24,7 @@ public class BasicEnemy extends GameObject {
         x += velX;
         y += velY;
 
-        if (x <= 0 || x >= Game.WIDTH - 16) velX *= -1;
-        if (y <= 0 || y >= Game.HEIGHT - 16) velY *= -1;
-
+        if (y >= Game.HEIGHT) handler.removeObject(this);
         handler.addObject(new Trail(x, y, ID.Trail, handler, Color.red, 16, 16, 0.05f));
     }
 
