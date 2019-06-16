@@ -61,7 +61,7 @@ public class BasicEnemy extends GameObject {
             if (velX == 0) velX = (r.nextInt(7 - -7) + -7);
             if (timer2 == 0) {
                 timer2 = r.nextInt(60) + 10;
-                if (smartBullets)
+                if (!smartBullets)
                     handler.addObject(new EnemyBullet((int) x + 48, (int) y, ID.BasicEnemy, handler));
                 else
                     handler.addObject(new SmartBullet((int) x + 48, (int) y, ID.BasicEnemy, handler));

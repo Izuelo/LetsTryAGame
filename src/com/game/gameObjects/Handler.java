@@ -11,7 +11,6 @@ public class Handler {
     public void tick() {
         for (int i = 0; i < object.size(); i++) {
             GameObject tempObject = object.get(i);
-
             tempObject.tick();
         }
     }
@@ -34,7 +33,7 @@ public class Handler {
     public void clearEnemies() {
         for (int i = 0; i < object.size(); i++) {
             GameObject obj = object.get(i);
-            if (obj.getId() != ID.Player) {
+            if (obj.getId() == ID.FastEnemy || obj.getId() == ID.SmartEnemy) {
                 removeObject(obj);
                 i--;
             }

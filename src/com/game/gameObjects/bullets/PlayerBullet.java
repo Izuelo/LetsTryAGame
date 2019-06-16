@@ -18,7 +18,7 @@ public class PlayerBullet extends GameObject {
         this.handler = handler;
 
         velX = 0;
-        velY = -4;
+        velY = -4.5f;
     }
 
     public Rectangle getBounds() {
