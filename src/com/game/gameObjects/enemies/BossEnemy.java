@@ -13,6 +13,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
 
+/**
+ * Class that represents boss enemy you may encounter during a game.
+ */
 public class BossEnemy extends GameObject {
     private Handler handler;
     private Random r = new Random();
@@ -22,6 +25,7 @@ public class BossEnemy extends GameObject {
     private float bossHealth = 100;
     private float greenValue = 255;
     private float offset = 0.00f;
+
 
     public BossEnemy(int x, int y, ID id, Handler handler) {
         super(x, y, id);
@@ -36,11 +40,17 @@ public class BossEnemy extends GameObject {
         velX = 0;
         velY = 1;
     }
-
+    /**
+     * Get bounds for this object
+     * @return rectangle that matches the size of this object image
+     */
     public Rectangle getBounds() {
         return new Rectangle((int) x, (int) y, 120, 113);
     }
 
+    /**
+     * Checking collision with PlayerBullet and decreasing this object health and removing this object if it drops below 0.
+     */
     private void collision() {
         for (int i = 0; i < handler.getObject().size(); i++) {
 
@@ -56,7 +66,9 @@ public class BossEnemy extends GameObject {
             }
         }
     }
-
+    /**
+     * Method to update status of this object and its variables
+     */
     public void tick() {
         x += velX;
         y += velY;
@@ -86,6 +98,10 @@ public class BossEnemy extends GameObject {
 
     }
 
+    /**
+     * renders graphic for this object
+     * @param g
+     */
     public void render(Graphics g) {
 //        g.setColor(Color.RED);
 //        g.fillRect((int) x, (int) y, 96, 96);

@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
+/**
+ * Main class wich runs the game.
+ */
 public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 720, HEIGHT = WIDTH / 12 * 9;
 
@@ -22,6 +25,9 @@ public class Game extends Canvas implements Runnable {
     private ScrollingBackground scrollingBackground;
     private int timer = 0;
 
+    /**
+     * Set of constants that represents different GameStates.
+     */
     public enum STATE {
         Menu,
         Help,
@@ -52,12 +58,18 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    /**
+     * Starts the game
+     */
     public synchronized void start() {
         thread = new Thread(this);
         thread.start();
         running = true;
     }
 
+    /**
+     * Stops the game
+     */
     public synchronized void stop() {
         try {
             thread.join();
@@ -67,6 +79,9 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    /**
+     * Game loop that allos to update everything in the game
+     */
     @Override
     public void run() {
         this.requestFocus();
@@ -95,7 +110,9 @@ public class Game extends Canvas implements Runnable {
         }
         stop();
     }
-
+    /**
+     * Method to update status of every other object in the game
+     */
     private void tick() {
         handler.tick();
         if (gameState == STATE.Game) {
@@ -115,6 +132,9 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    /**
+     * Method to render image of every other object in the game
+     */
     private void render() {
         BufferStrategy bs = this.getBufferStrategy();
         if (bs == null) {
@@ -142,6 +162,13 @@ public class Game extends Canvas implements Runnable {
         bs.show();
     }
 
+    /**
+     * Method that does not allow variable to cross the minimum or maximum value
+     * @param val value that needs to be controlled
+     * @param min minimal value
+     * @param max maximal value
+     * @return returns vaule within minimum and maximum bounds
+     */
     public static int clamp(float val, float min, float max) {
         return (int) Math.max(min, Math.min(max, val));
     }

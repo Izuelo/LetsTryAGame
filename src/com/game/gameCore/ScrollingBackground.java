@@ -6,6 +6,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+/**
+ * Class thath puts two backgrounds together for smooth transition
+ */
 public class ScrollingBackground extends Canvas {
 
     // Two copies of the background image to scroll
@@ -17,7 +20,10 @@ public class ScrollingBackground extends Canvas {
         backOne = new Background(0, 0);
         backTwo = new Background(0, backOne.getImageHeight());
     }
-
+    /**
+     * Renders scrolling background
+     * @param g
+     */
     public void render(Graphics g) {
         Graphics2D twoD = (Graphics2D) g;
 

@@ -13,6 +13,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
 
+/**
+ * Class that represents basic enemy you may encounter during a game.
+ */
 public class BasicEnemy extends GameObject {
     private Handler handler;
     private Random r = new Random();
@@ -35,10 +38,17 @@ public class BasicEnemy extends GameObject {
         velY = 3;
     }
 
+    /**
+     * Get bounds for this object
+     * @return rectangle that matches the size of this object image
+     */
     public Rectangle getBounds() {
         return new Rectangle((int) x, (int) y, 40, 40);
     }
 
+    /**
+     * Checking collision with PlayerBullet and removing this object if it occurs
+     */
     private void collision() {
         for (int i = 0; i < handler.getObject().size(); i++) {
 
@@ -51,7 +61,9 @@ public class BasicEnemy extends GameObject {
             }
         }
     }
-
+    /**
+     * Method to update status of this object and its variables
+     */
     public void tick() {
         x += velX;
         y += velY;
@@ -73,6 +85,10 @@ public class BasicEnemy extends GameObject {
         collision();
     }
 
+    /**
+     * Renders graphic for this object
+     * @param g
+     */
     public void render(Graphics g) {
         g.drawImage(this.image,(int)x, (int) y,null);
     }

@@ -10,12 +10,15 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
+/**
+ * Class that represents smart enemy you may encounter during a game. SmartEnemy follows Player position
+ */
 public class SmartEnemy extends GameObject {
 
     private Handler handler;
     private GameObject player;
     private BufferedImage image;
+
 
     public SmartEnemy(int x, int y, ID id, Handler handler) {
         super(x, y, id);
@@ -29,11 +32,17 @@ public class SmartEnemy extends GameObject {
 
         this.handler = handler;
     }
-
+    /**
+     * Get bounds for this object
+     * @return rectangle that matches the size of this object image
+     */
     public Rectangle getBounds() {
         return new Rectangle((int) x, (int) y, 50, 47);
     }
 
+    /**
+     * Method to update status of this object and its variables
+     */
     public void tick() {
         x += velX;
         y += velY;
@@ -50,6 +59,10 @@ public class SmartEnemy extends GameObject {
 
     }
 
+    /**
+     * renders graphic for this object
+     * @param g
+     */
     public void render(Graphics g) {
         g.drawImage(this.image,(int)x, (int) y,null);
     }

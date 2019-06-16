@@ -1,0 +1,5 @@
+com.game.gameCore
+com.game.gameMenu
+com.game.gameObjects
+com.game.gameObjects.bullets
+com.game.gameObjects.enemies
