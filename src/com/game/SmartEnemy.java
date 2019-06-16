@@ -9,8 +9,7 @@ public class SmartEnemy extends GameObject {
 
     public SmartEnemy(int x, int y, ID id, Handler handler) {
         super(x, y, id);
-        for (int i = 0; i < handler.object.size(); i++)
-            if (handler.object.get(i).getId() == ID.Player) player = handler.object.get(i);
+        player = handler.object.get(0);
 
         this.handler = handler;
     }

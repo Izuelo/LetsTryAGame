@@ -3,17 +3,16 @@ package com.game;
 import java.awt.*;
 import java.util.Random;
 
-public class Bullet extends GameObject {
+public class PlayerBullet extends GameObject {
     private Handler handler;
     private Random r = new Random();
 
-    public Bullet(int x, int y, ID id, Handler handler) {
+    public PlayerBullet(float x, float y, ID id, Handler handler) {
         super(x, y, id);
-
         this.handler = handler;
 
-        velX = (r.nextInt(5 - -5) + -5);
-        velY = 5;
+        velX = 0;
+        velY = -4;
     }
 
     public Rectangle getBounds() {
@@ -25,11 +24,11 @@ public class Bullet extends GameObject {
         y += velY;
 
         if (y >= Game.HEIGHT) handler.removeObject(this);
-        handler.addObject(new Trail(x, y, ID.Trail, handler, Color.red, 18, 18, 0.05f));
+        handler.addObject(new Trail(x, y, ID.Trail, handler, Color.cyan, 18, 18, 0.09f));
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.RED);
+        g.setColor(Color.cyan);
         g.fillRect((int) x, (int) y, 16, 16);
     }
 }

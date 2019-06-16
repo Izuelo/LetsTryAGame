@@ -37,10 +37,7 @@ public class Game extends Canvas implements Runnable {
         spawner = new Spawn(handler, hud);
 
 
-        if (gameState == STATE.Game) {
-            handler.addObject(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler));
-            handler.addObject(new BasicEnemy(r.nextInt(WIDTH - 32), r.nextInt(HEIGHT - 32), ID.BasicEnemy, handler));
-        } else {
+        if (gameState != STATE.Game) {
             for (int i = 0; i < 20; i++) {
                 handler.addObject(new MenuParticle(r.nextInt(WIDTH - 32), r.nextInt(HEIGHT - 32), ID.MenuParticle, handler));
             }
@@ -96,15 +93,15 @@ public class Game extends Canvas implements Runnable {
         if (gameState == STATE.Game) {
             hud.tick();
             spawner.tick();
-             if (HUD.HEALTH <= 0) {
-                 HUD.HEALTH = 100;
-                 handler.object.clear();
-                 spawner.setScoreKeep(0);
-                 gameState = STATE.GameOver;
-                 for (int i = 0; i < 20; i++) {
-                     handler.addObject(new MenuParticle(r.nextInt(WIDTH - 32), r.nextInt(HEIGHT - 32), ID.MenuParticle, handler));
-                 }
-             }
+            if (HUD.HEALTH <= 0) {
+                HUD.HEALTH = 100;
+                handler.object.clear();
+                spawner.setScoreKeep(0);
+                gameState = STATE.GameOver;
+                for (int i = 0; i < 20; i++) {
+                    handler.addObject(new MenuParticle(r.nextInt(WIDTH - 32), r.nextInt(HEIGHT - 32), ID.MenuParticle, handler));
+                }
+            }
         } else if (gameState == STATE.Menu || gameState == STATE.GameOver) {
             menu.tick();
         }
