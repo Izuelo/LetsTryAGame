@@ -1,10 +1,11 @@
 package com.game.gameCore;
 
-import com.game.gameCore.Game;
-
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class which represents a Window in our game
+ */
 public class Window extends Canvas {
 
     public Window(int width, int height, String title, Game game) {

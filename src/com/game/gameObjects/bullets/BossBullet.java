@@ -9,6 +9,9 @@ import com.game.gameObjects.Trail;
 import java.awt.*;
 import java.util.Random;
 
+/**
+ * Class of a bullet for the boss
+ */
 public class BossBullet extends GameObject {
     private Handler handler;
     private Random r = new Random();
@@ -21,10 +24,17 @@ public class BossBullet extends GameObject {
         velY = 5;
     }
 
+    /**
+     * Get bounds for this object
+     * @return Rectangle that matches the size of this object image
+     */
     public Rectangle getBounds() {
         return new Rectangle((int) x, (int) y, 16, 16);
     }
 
+    /**
+     * Method to update status of this object and its variables
+     */
     public void tick() {
         x += velX;
         y += velY;
@@ -33,6 +43,10 @@ public class BossBullet extends GameObject {
         handler.addObject(new Trail(x, y, ID.Trail, handler, Color.RED, 18, 18, 0.09f));
     }
 
+    /**
+     * Renders graphic for this object
+     * @param g
+     */
     public void render(Graphics g) {
         g.setColor(Color.RED);
         g.fillRect((int) x, (int) y, 16, 16);

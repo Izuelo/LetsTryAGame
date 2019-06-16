@@ -9,8 +9,11 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+/**
+ * Class which represents Player in our game
+ */
 public class Player extends GameObject {
-    Handler handler;
+    private Handler handler;
     private int shootTimer = 40;
     private BufferedImage image;
 
@@ -25,10 +28,17 @@ public class Player extends GameObject {
         }
     }
 
+    /**
+     * Get bounds for this object
+     * @return Rectangle that matches the size of this object image
+     */
     public Rectangle getBounds() {
         return new Rectangle((int) x, (int) y, 50, 32);
     }
 
+    /**
+     * Method to update status of this object and its variables
+     */
     public void tick() {
         x += velX;
         y += velY;
@@ -50,6 +60,9 @@ public class Player extends GameObject {
         }
     }
 
+    /**
+     * Checking collision with every Enemy and Bullet in the game, removing them from the game and decreasing HEALTH of our Player
+     */
     private void collision() {
         for (int i = 0; i < handler.object.size(); i++) {
 
@@ -59,7 +72,6 @@ public class Player extends GameObject {
                     HUD.HEALTH -= 2;
                     handler.object.remove(tempObject);
                 }
-
             }
             if(tempObject.getId() == ID.FastEnemy){
                 if (getBounds().intersects(tempObject.getBounds())) {
@@ -67,10 +79,13 @@ public class Player extends GameObject {
                     handler.object.remove(tempObject);
                 }
             }
-
         }
     }
 
+    /**
+     * renders graphic for this object
+     * @param g
+     */
     public void render(Graphics g) {
         g.drawImage(this.image, (int) x, (int) y, null);
     }

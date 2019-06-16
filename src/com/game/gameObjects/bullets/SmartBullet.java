@@ -5,10 +5,11 @@ import com.game.gameCore.ID;
 import com.game.gameObjects.GameObject;
 import com.game.gameObjects.Handler;
 import com.game.gameObjects.Trail;
-
 import java.awt.*;
-import java.util.Random;
 
+/**
+ * Class of a bullet that goes towards the player
+ */
 public class SmartBullet extends GameObject {
     private Handler handler;
 
@@ -31,10 +32,17 @@ public class SmartBullet extends GameObject {
             velY = ((-1 / distance) * diffY) - 1.2f;
     }
 
+    /**
+     * Get bounds for this object
+     * @return Rectangle that matches the size of this object image
+     */
     public Rectangle getBounds() {
         return new Rectangle((int) x, (int) y, 16, 16);
     }
 
+    /**
+     * Method to update status of this object and its variables
+     */
     public void tick() {
         x += velX;
         y += velY;
@@ -43,6 +51,10 @@ public class SmartBullet extends GameObject {
         handler.addObject(new Trail(x, y, ID.Trail, handler, Color.BLUE, 18, 18, 0.09f));
     }
 
+    /**
+     * renders graphic for this object
+     * @param g
+     */
     public void render(Graphics g) {
         g.setColor(Color.BLUE);
         g.fillRect((int) x, (int) y, 16, 16);

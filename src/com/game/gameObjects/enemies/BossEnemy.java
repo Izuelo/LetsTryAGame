@@ -60,12 +60,13 @@ public class BossEnemy extends GameObject {
     public void tick() {
         x += velX;
         y += velY;
+        greenValue = bossHealth * 2;
 
         if (timer1 <= 0) {
             velY = 0;
             if (timer2 == 40) {
                 handler.addObject(new FastEnemy((int) x - 96, (int) y, ID.FastEnemy, handler));
-                handler.addObject(new FastEnemy((int) x + 96, Game.HEIGHT - 32, ID.FastEnemy, handler));
+                handler.addObject(new FastEnemy((int) x + 96, Game.HEIGHT - 50, ID.FastEnemy, handler));
             }
             timer2--;
         } else timer1--;
@@ -87,15 +88,13 @@ public class BossEnemy extends GameObject {
     }
 
     public void render(Graphics g) {
-//        g.setColor(Color.RED);
-//        g.fillRect((int) x, (int) y, 96, 96);
         g.drawImage(this.image,(int)x, (int) y,null);
 
         g.setColor(Color.GRAY);
-        g.fillRect((int) x - 2, (int) y - 16, (int) bossHealth, 15);
+        g.fillRect((int) x + 8, (int) y - 16, (int) bossHealth, 15);
         g.setColor(new Color(125, (int) greenValue, 0));
-        g.fillRect((int) x - 2, (int) y - 16, (int) bossHealth, 15);
+        g.fillRect((int) x + 8, (int) y - 16, (int) bossHealth, 15);
         g.setColor(Color.WHITE);
-        g.drawRect((int) x - 2, (int) y - 16, (int) bossHealth, 15);
+        g.drawRect((int) x + 8, (int) y - 16, (int) bossHealth, 15);
     }
 }

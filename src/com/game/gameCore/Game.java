@@ -20,7 +20,6 @@ public class Game extends Canvas implements Runnable {
     private Spawn spawner;
     private Menu menu;
     private ScrollingBackground scrollingBackground;
-    private int timer = 0;
 
     public enum STATE {
         Menu,

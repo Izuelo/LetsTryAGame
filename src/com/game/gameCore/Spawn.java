@@ -8,6 +8,9 @@ import com.game.gameObjects.enemies.SmartEnemy;
 
 import java.util.Random;
 
+/**
+ * Class which lets us control levels of our game and spawning of the enemies
+ */
 public class Spawn {
     private Handler handler;
     private HUD hud;
@@ -20,6 +23,9 @@ public class Spawn {
         this.hud = hud;
     }
 
+    /**
+     * Method which spawn enemies and updates our level
+     */
     public void tick() {
         scoreKeep++;
 
@@ -57,6 +63,10 @@ public class Spawn {
         }
     }
 
+    /**
+     * Setter of the scoreKeep parameter
+     * @param scoreKeep Parameter which tells the game when the level should be updated and enemies spawned
+     */
     public void setScoreKeep(int scoreKeep) {
         this.scoreKeep = scoreKeep;
     }

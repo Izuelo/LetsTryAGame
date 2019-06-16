@@ -6,6 +6,7 @@ import com.game.gameCore.ID;
 import com.game.gameObjects.Handler;
 import com.game.gameObjects.Player;
 import com.game.gameObjects.enemies.BasicEnemy;
+import com.game.gameObjects.enemies.BossEnemy;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -38,6 +39,7 @@ public class Menu extends MouseAdapter {
                 for (int i = 0; i < 3; i++) {
                     handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 60), -100, ID.BasicEnemy, handler, false));
                 }
+                handler.addObject(new BossEnemy((Game.WIDTH / 2 - 48), -110, ID.BossEnemy, handler));
             }
 
             //Help button
