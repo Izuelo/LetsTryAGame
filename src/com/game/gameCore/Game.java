@@ -19,6 +19,8 @@ public class Game extends Canvas implements Runnable {
     private HUD hud;
     private Spawn spawner;
     private Menu menu;
+    private ScrollingBackground scrollingBackground;
+    private int timer = 0;
 
     public enum STATE {
         Menu,
@@ -33,6 +35,8 @@ public class Game extends Canvas implements Runnable {
         handler = new Handler();
         hud = new HUD();
         menu = new Menu(this, handler, hud);
+        scrollingBackground = new ScrollingBackground();
+
         this.addKeyListener(new KeyInput(handler));
         this.addMouseListener(menu);
 
@@ -122,14 +126,18 @@ public class Game extends Canvas implements Runnable {
 
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, WIDTH, HEIGHT);
-
-        handler.render(g);
-
         if (gameState == STATE.Game) {
+            scrollingBackground.render(g);
+        }
+        handler.render(g);
+        if (gameState == STATE.Game) {
+
+
             hud.render(g);
         } else if (gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.GameOver) {
             menu.render(g);
         }
+
         g.dispose();
         bs.show();
     }

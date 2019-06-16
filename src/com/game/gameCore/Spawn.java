@@ -28,7 +28,7 @@ public class Spawn {
             hud.setLevel(hud.getLevel() + 1);
 
             if (hud.getLevel() == 2) {
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < 1; i++) {
                     handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 60), -100, ID.BasicEnemy, handler, true));
                     handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 60), -100, ID.BasicEnemy, handler, false));
                 }
@@ -37,8 +37,8 @@ public class Spawn {
                 handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH - 60), r.nextInt(Game.HEIGHT - 60), ID.FastEnemy, handler));
             } else if (hud.getLevel() == 4) {
                 for (int i = 0; i < 2; i++) {
-                    handler.clearEnemies();
-                    handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 60), -100, ID.BasicEnemy, handler, true));
+
+                    handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH - 60), -100, ID.FastEnemy, handler));
                     handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 60), -100, ID.BasicEnemy, handler, false));
                 }
             } else if (hud.getLevel() == 5) {

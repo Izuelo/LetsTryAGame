@@ -54,11 +54,20 @@ public class Player extends GameObject {
         for (int i = 0; i < handler.object.size(); i++) {
 
             GameObject tempObject = handler.object.get(i);
-            if (tempObject.getId() == ID.BasicEnemy || tempObject.getId() == ID.FastEnemy || tempObject.getId() == ID.SmartEnemy || tempObject.getId() == ID.BossEnemy) {
+            if (tempObject.getId() == ID.BasicEnemy  || tempObject.getId() == ID.SmartEnemy || tempObject.getId() == ID.BossEnemy) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     HUD.HEALTH -= 2;
+                    handler.object.remove(tempObject);
+                }
+
+            }
+            if(tempObject.getId() == ID.FastEnemy){
+                if (getBounds().intersects(tempObject.getBounds())) {
+                    HUD.HEALTH -= 20;
+                    handler.object.remove(tempObject);
                 }
             }
+
         }
     }
 

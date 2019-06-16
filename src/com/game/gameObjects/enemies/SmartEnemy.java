@@ -6,22 +6,32 @@ import com.game.gameObjects.GameObject;
 import com.game.gameObjects.Handler;
 import com.game.gameObjects.Trail;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class SmartEnemy extends GameObject {
 
     private Handler handler;
     private GameObject player;
+    private BufferedImage image;
 
     public SmartEnemy(int x, int y, ID id, Handler handler) {
         super(x, y, id);
         player = handler.getObject().get(0);
 
+        try {
+            this.image= ImageIO.read(getClass().getResource("/com/game/resources/images/smartEnemySD.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         this.handler = handler;
     }
 
     public Rectangle getBounds() {
-        return new Rectangle((int) x, (int) y, 18, 18);
+        return new Rectangle((int) x, (int) y, 50, 47);
     }
 
     public void tick() {
@@ -37,11 +47,10 @@ public class SmartEnemy extends GameObject {
 
         if (x <= 0 || x >= Game.WIDTH - 16)  velX *= -1;
         if (y <= 0 || y >= Game.HEIGHT - 16) velY *= -1;
-        handler.addObject(new Trail(x, y, ID.Trail, handler, Color.ORANGE, 19, 19, 0.05f));
+
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.ORANGE);
-        g.fillRect((int) x, (int) y, 16, 16);
+        g.drawImage(this.image,(int)x, (int) y,null);
     }
 }

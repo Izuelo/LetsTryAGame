@@ -7,27 +7,38 @@ import com.game.gameObjects.Trail;
 import com.game.gameObjects.bullets.BossBullet;
 import com.game.gameObjects.GameObject;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Random;
 
 public class BossEnemy extends GameObject {
     private Handler handler;
     private Random r = new Random();
+    private BufferedImage image;
     private int timer1 = 120;
     private int timer2 = 80;
     private float bossHealth = 100;
     private float greenValue = 255;
     private float offset = 0.00f;
+
     public BossEnemy(int x, int y, ID id, Handler handler) {
         super(x, y, id);
         this.handler = handler;
+
+        try {
+            this.image= ImageIO.read(getClass().getResource("/com/game/resources/images/boss1.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         velX = 0;
         velY = 1;
     }
 
     public Rectangle getBounds() {
-        return new Rectangle((int) x, (int) y, 96, 96);
+        return new Rectangle((int) x, (int) y, 120, 113);
     }
 
     private void collision() {
@@ -72,12 +83,13 @@ public class BossEnemy extends GameObject {
         }
 
         if (x <= 0 || x >= Game.WIDTH - 96) velX *= -1;
-        handler.addObject(new Trail(x, y, ID.Trail, handler, Color.RED, 98, 98, 0.08f));
+
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.RED);
-        g.fillRect((int) x, (int) y, 96, 96);
+//        g.setColor(Color.RED);
+//        g.fillRect((int) x, (int) y, 96, 96);
+        g.drawImage(this.image,(int)x, (int) y,null);
 
         g.setColor(Color.GRAY);
         g.fillRect((int) x - 2, (int) y - 16, (int) bossHealth, 15);
