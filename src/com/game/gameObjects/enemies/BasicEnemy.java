@@ -1,12 +1,22 @@
-package com.game;
+package com.game.gameObjects.enemies;
 
+import com.game.gameCore.Game;
+import com.game.gameCore.ID;
+import com.game.gameObjects.GameObject;
+import com.game.gameObjects.Handler;
+import com.game.gameObjects.bullets.EnemyBullet;
+import com.game.gameObjects.bullets.SmartBullet;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Random;
 
 public class BasicEnemy extends GameObject {
     private Handler handler;
     private Random r = new Random();
-    private Color color;
+    private BufferedImage image;
     private boolean smartBullets;
     private int timer1 = r.nextInt(60) + 40;
     private int timer2 = r.nextInt(60) + 10;
@@ -15,24 +25,28 @@ public class BasicEnemy extends GameObject {
         super(x, y, id);
         this.handler = handler;
         this.smartBullets = smartBullets;
-        if (smartBullets) color = Color.BLUE;
-        else color = Color.RED;
+
+        try {
+            this.image= ImageIO.read(getClass().getResource("/com/game/resources/images/enemyShipSD.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         velX = 0;
         velY = 3;
     }
 
     public Rectangle getBounds() {
-        return new Rectangle((int) x, (int) y, 32, 32);
+        return new Rectangle((int) x, (int) y, 40, 40);
     }
 
     private void collision() {
-        for (int i = 0; i < handler.object.size(); i++) {
+        for (int i = 0; i < handler.getObject().size(); i++) {
 
-            GameObject tempObject = handler.object.get(i);
+            GameObject tempObject = handler.getObject().get(i);
             if (tempObject.getId() == ID.PlayerBullet) {
                 if (getBounds().intersects(tempObject.getBounds())) {
-                    handler.object.remove(this);
-                    handler.object.remove(tempObject);
+                    handler.getObject().remove(this);
+                    handler.getObject().remove(tempObject);
                 }
             }
         }
@@ -48,9 +62,9 @@ public class BasicEnemy extends GameObject {
             if (timer2 == 0) {
                 timer2 = r.nextInt(60) + 10;
                 if (smartBullets)
-                    handler.addObject(new EnemyBullet((int) x + 48, (int) y, ID.BasicEnemy, handler, false, true));
+                    handler.addObject(new EnemyBullet((int) x + 48, (int) y, ID.BasicEnemy, handler));
                 else
-                    handler.addObject(new EnemyBullet((int) x + 48, (int) y, ID.BasicEnemy, handler, false, false));
+                    handler.addObject(new SmartBullet((int) x + 48, (int) y, ID.BasicEnemy, handler));
             }
             timer2--;
         } else timer1--;
@@ -60,7 +74,6 @@ public class BasicEnemy extends GameObject {
     }
 
     public void render(Graphics g) {
-        g.setColor(color);
-        g.fillRect((int) x, (int) y, 32, 32);
+        g.drawImage(this.image,(int)x, (int) y,null);
     }
 }

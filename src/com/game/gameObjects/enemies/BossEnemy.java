@@ -1,4 +1,12 @@
-package com.game;
+package com.game.gameObjects.enemies;
+
+import com.game.gameCore.Game;
+import com.game.gameCore.ID;
+import com.game.gameObjects.Handler;
+import com.game.gameObjects.Trail;
+import com.game.gameObjects.bullets.BossBullet;
+import com.game.gameObjects.bullets.EnemyBullet;
+import com.game.gameObjects.GameObject;
 
 import java.awt.*;
 import java.util.Random;
@@ -11,7 +19,6 @@ public class BossEnemy extends GameObject {
 
     public BossEnemy(int x, int y, ID id, Handler handler) {
         super(x, y, id);
-
         this.handler = handler;
 
         velX = 0;
@@ -43,11 +50,11 @@ public class BossEnemy extends GameObject {
             }
             velX = Game.clamp(velX,-10,10);
             int spawn = r.nextInt(8);
-            if (spawn == 0) handler.addObject(new EnemyBullet((int) x + 48, (int) y, ID.BasicEnemy, handler, true, false));
+            if (spawn == 0) handler.addObject(new BossBullet((int) x + 48, (int) y, ID.BasicEnemy, handler));
         }
 
         if (x <= 0 || x >= Game.WIDTH - 96) velX *= -1;
-        handler.addObject(new Trail(x, y, ID.Trail, handler, Color.red, 98, 98, 0.08f));
+        handler.addObject(new Trail(x, y, ID.Trail, handler, Color.RED, 98, 98, 0.08f));
     }
 
     public void render(Graphics g) {

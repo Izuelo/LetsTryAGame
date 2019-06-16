@@ -1,4 +1,10 @@
-package com.game;
+package com.game.gameObjects.enemies;
+
+import com.game.gameCore.Game;
+import com.game.gameCore.ID;
+import com.game.gameObjects.GameObject;
+import com.game.gameObjects.Handler;
+import com.game.gameObjects.Trail;
 
 import java.awt.*;
 
@@ -9,7 +15,7 @@ public class SmartEnemy extends GameObject {
 
     public SmartEnemy(int x, int y, ID id, Handler handler) {
         super(x, y, id);
-        player = handler.object.get(0);
+        player = handler.getObject().get(0);
 
         this.handler = handler;
     }

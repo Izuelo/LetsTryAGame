@@ -1,4 +1,6 @@
-package com.game;
+package com.game.gameCore;
+
+import com.game.gameCore.Game;
 
 import java.awt.*;
 

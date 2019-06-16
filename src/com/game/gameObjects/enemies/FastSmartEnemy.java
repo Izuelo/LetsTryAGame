@@ -1,4 +1,10 @@
-package com.game;
+package com.game.gameObjects.enemies;
+
+import com.game.gameCore.Game;
+import com.game.gameCore.ID;
+import com.game.gameObjects.GameObject;
+import com.game.gameObjects.Handler;
+import com.game.gameObjects.Trail;
 
 import java.awt.*;
 
@@ -9,8 +15,8 @@ public class FastSmartEnemy extends GameObject {
 
     public FastSmartEnemy(int x, int y, ID id, Handler handler) {
         super(x, y, id);
-        for (int i = 0; i < handler.object.size(); i++)
-            if (handler.object.get(i).getId() == ID.Player) player = handler.object.get(i);
+        for (int i = 0; i < handler.getObject().size(); i++)
+            if (handler.getObject().get(i).getId() == ID.Player) player = handler.getObject().get(i);
 
         this.handler = handler;
     }

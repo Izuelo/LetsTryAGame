@@ -1,4 +1,10 @@
-package com.game;
+package com.game.gameCore;
+
+import com.game.gameObjects.Handler;
+import com.game.gameObjects.enemies.BasicEnemy;
+import com.game.gameObjects.enemies.BossEnemy;
+import com.game.gameObjects.enemies.FastEnemy;
+import com.game.gameObjects.enemies.SmartEnemy;
 
 import java.util.Random;
 

@@ -1,4 +1,8 @@
-package com.game;
+package com.game.gameObjects;
+
+import com.game.gameCore.ID;
+import com.game.gameObjects.GameObject;
+import com.game.gameObjects.Handler;
 
 import java.awt.*;
 

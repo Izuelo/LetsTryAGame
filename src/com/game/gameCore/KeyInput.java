@@ -1,4 +1,8 @@
-package com.game;
+package com.game.gameCore;
+
+import com.game.gameObjects.Handler;
+import com.game.gameObjects.bullets.PlayerBullet;
+import com.game.gameObjects.GameObject;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -16,7 +20,7 @@ public class KeyInput extends KeyAdapter {
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
-        GameObject tempPlayer = handler.object.get(0);
+        GameObject tempPlayer = handler.getObject().get(0);
 
         if (key == KeyEvent.VK_ESCAPE) System.exit(0);
         if (key == KeyEvent.VK_SPACE && tempPlayer.isCanShoot()) {
@@ -48,7 +52,7 @@ public class KeyInput extends KeyAdapter {
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
 
-        GameObject obj = handler.object.get(0);
+        GameObject obj = handler.getObject().get(0);
         if (obj.getId() == ID.Player) {
             if (key == KeyEvent.VK_UP) keyDown[0] = false;
             if (key == KeyEvent.VK_DOWN) keyDown[1] = false;

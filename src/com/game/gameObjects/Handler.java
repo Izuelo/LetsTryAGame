@@ -1,4 +1,6 @@
-package com.game;
+package com.game.gameObjects;
+
+import com.game.gameCore.ID;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -37,5 +39,9 @@ public class Handler {
                 i--;
             }
         }
+    }
+
+    public ArrayList<GameObject> getObject() {
+        return object;
     }
 }

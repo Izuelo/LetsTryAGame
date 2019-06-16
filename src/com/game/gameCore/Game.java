@@ -1,4 +1,8 @@
-package com.game;
+package com.game.gameCore;
+
+import com.game.gameMenu.Menu;
+import com.game.gameMenu.MenuParticle;
+import com.game.gameObjects.Handler;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -95,7 +99,7 @@ public class Game extends Canvas implements Runnable {
             spawner.tick();
             if (HUD.HEALTH <= 0) {
                 HUD.HEALTH = 100;
-                handler.object.clear();
+                handler.getObject().clear();
                 spawner.setScoreKeep(0);
                 gameState = STATE.GameOver;
                 for (int i = 0; i < 20; i++) {

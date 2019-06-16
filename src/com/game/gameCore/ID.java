@@ -1,4 +1,4 @@
-package com.game;
+package com.game.gameCore;
 
 public enum ID {
     Player(),

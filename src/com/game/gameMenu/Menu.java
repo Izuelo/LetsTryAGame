@@ -1,4 +1,11 @@
-package com.game;
+package com.game.gameMenu;
+
+import com.game.gameCore.HUD;
+import com.game.gameCore.Game;
+import com.game.gameCore.ID;
+import com.game.gameObjects.Handler;
+import com.game.gameObjects.Player;
+import com.game.gameObjects.enemies.BasicEnemy;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -26,7 +33,7 @@ public class Menu extends MouseAdapter {
         if (game.gameState == Game.STATE.Menu) {
             if (mouseOver(mx, my, Game.WIDTH / 2 - 100, 150, 200, 64)) {
                 game.gameState = Game.STATE.Game;
-                handler.object.clear();
+                handler.getObject().clear();
                 handler.addObject(new Player(Game.WIDTH / 2 - 32, Game.HEIGHT / 2 - 32, ID.Player, handler));
                 for (int i = 0; i < 3; i++) {
                     handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 60), -100, ID.BasicEnemy, handler, false));
@@ -58,7 +65,7 @@ public class Menu extends MouseAdapter {
                 game.gameState = Game.STATE.Game;
                 hud.setLevel(1);
                 hud.setScore(0);
-                handler.object.clear();
+                handler.getObject().clear();
                 handler.addObject(new Player(Game.WIDTH / 2 - 32, Game.HEIGHT / 2 - 32, ID.Player, handler));
                 for (int i = 0; i < 3; i++) {
                     handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 60), -100, ID.BasicEnemy, handler, false));
@@ -73,9 +80,7 @@ public class Menu extends MouseAdapter {
 
     private boolean mouseOver(int mx, int my, int x, int y, int width, int height) {
         if (mx > x && mx < x + width) {
-            if (my > y && my < y + height) {
-                return true;
-            } else return false;
+            return my > y && my < y + height;
         } else return false;
     }
 
@@ -84,8 +89,8 @@ public class Menu extends MouseAdapter {
     }
 
     public void render(Graphics g) {
-        Font fnt = new Font("arial", 1, 50);
-        Font fnt2 = new Font("small", 1, 30);
+        Font fnt = new Font("arial", Font.BOLD, 50);
+        Font fnt2 = new Font("small", Font.BOLD, 30);
         if (game.gameState == Game.STATE.Menu) {
             g.setFont(fnt);
 

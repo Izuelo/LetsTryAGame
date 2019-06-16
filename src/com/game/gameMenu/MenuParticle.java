@@ -1,4 +1,10 @@
-package com.game;
+package com.game.gameMenu;
+
+import com.game.gameObjects.Trail;
+import com.game.gameCore.Game;
+import com.game.gameCore.ID;
+import com.game.gameObjects.GameObject;
+import com.game.gameObjects.Handler;
 
 import java.awt.*;
 import java.util.Random;

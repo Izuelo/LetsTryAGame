@@ -1,4 +1,10 @@
-package com.game;
+package com.game.gameObjects.enemies;
+
+import com.game.gameCore.Game;
+import com.game.gameCore.ID;
+import com.game.gameObjects.GameObject;
+import com.game.gameObjects.Handler;
+import com.game.gameObjects.Trail;
 
 import java.awt.*;
 
