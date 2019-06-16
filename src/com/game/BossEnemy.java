@@ -14,6 +14,7 @@ public class BossEnemy extends GameObject {
 
         this.handler = handler;
 
+
         velX = 0;
         velY = 1;
     }

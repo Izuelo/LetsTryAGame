@@ -1,12 +1,16 @@
 package com.game;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Random;
 
 public class BasicEnemy extends GameObject {
     private Handler handler;
     private Random r = new Random();
     private Color color;
+    private BufferedImage image;
     private boolean smartBullets;
     private int timer1 = r.nextInt(60) + 40;
     private int timer2 = r.nextInt(60) + 10;
@@ -17,12 +21,18 @@ public class BasicEnemy extends GameObject {
         this.smartBullets = smartBullets;
         if (smartBullets) color = Color.BLUE;
         else color = Color.RED;
+
+        try {
+            this.image= ImageIO.read(getClass().getResource("/com/resources/images/enemyShipSD.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         velX = 0;
         velY = 3;
     }
 
     public Rectangle getBounds() {
-        return new Rectangle((int) x, (int) y, 32, 32);
+        return new Rectangle((int) x, (int) y, 40, 40);
     }
 
     private void collision() {
@@ -60,7 +70,9 @@ public class BasicEnemy extends GameObject {
     }
 
     public void render(Graphics g) {
-        g.setColor(color);
-        g.fillRect((int) x, (int) y, 32, 32);
+//        g.setColor(color);
+//        g.fillRect((int) x, (int) y, 32, 32);
+
+        g.drawImage(this.image,(int)x, (int) y,null);
     }
 }

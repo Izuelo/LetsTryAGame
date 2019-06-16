@@ -1,18 +1,30 @@
 package com.game;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class Player extends GameObject {
     Handler handler;
     private int shootTimer = 40;
+    private BufferedImage image;
 
     public Player(int x, int y, ID id, Handler handler) {
         super(x, y, id);
         this.handler = handler;
+
+        try {
+            this.image= ImageIO.read(getClass().getResource("/com/resources/images/playerShipSD.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     public Rectangle getBounds() {
-        return new Rectangle((int) x, (int) y, 32, 32);
+        return new Rectangle((int) x, (int) y, 50, 32);
     }
 
     public void tick() {
@@ -22,7 +34,7 @@ public class Player extends GameObject {
         x = Game.clamp(x, 0, Game.WIDTH - 32);
         y = Game.clamp(y, 225, Game.HEIGHT - 32);
 
-        handler.addObject(new Trail(x, y, ID.Trail, handler, Color.WHITE, 34, 34, 0.15f));
+
         try {
             collision();
         } catch (Exception ignored){}
@@ -49,7 +61,9 @@ public class Player extends GameObject {
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.white);
-        g.fillRect((int) x, (int) y, 32, 32);
+//        g.setColor(Color.white);
+//        g.fillRect((int) x, (int) y, 32, 32);
+
+        g.drawImage(this.image,(int)x, (int) y,null);
     }
 }
