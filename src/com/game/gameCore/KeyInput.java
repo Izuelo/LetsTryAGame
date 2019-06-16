@@ -7,6 +7,9 @@ import com.game.gameObjects.GameObject;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * Class which handles user key input
+ */
 public class KeyInput extends KeyAdapter {
     private Handler handler;
     private boolean[] keyDown = new boolean[4];
@@ -18,6 +21,10 @@ public class KeyInput extends KeyAdapter {
         }
     }
 
+    /**
+     * Method which handles events of pressed keys
+     * @param e stored event of pressed key
+     */
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         GameObject tempPlayer = handler.getObject().get(0);
@@ -48,7 +55,10 @@ public class KeyInput extends KeyAdapter {
         }
 
     }
-
+    /**
+     * Method which handles events of released keys
+     * @param e stored event of released key
+     */
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
 
@@ -66,7 +76,6 @@ public class KeyInput extends KeyAdapter {
             else if (keyDown[2] && !keyDown[3]) obj.setVelX(5);
             else if (!keyDown[2] && keyDown[3]) obj.setVelX(-5);
         }
-
 
     }
 }

@@ -6,6 +6,9 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * Stores image for a background and moves it vertically
+ */
 public class Background {
     private BufferedImage image;
     private int x;
@@ -22,11 +25,14 @@ public class Background {
         }
     }
 
-
-    public void render(Graphics window) {
+    /**
+     * Renders graphic for this object and moves it vertically
+     * @param g
+     */
+    public void render(Graphics g) {
 
         // Draw the image onto the Graphics reference
-        window.drawImage(image, getX(), getY(), image.getWidth(), image.getHeight(), null);
+        g.drawImage(image, getX(), getY(), image.getWidth(), image.getHeight(), null);
 
         // Move the y position left for next time
         timer++;
@@ -44,31 +50,37 @@ public class Background {
 
     }
 
-
+    /**
+     * Setter of the X parameter
+     * @param x New x value
+     */
     public void setX(int x) {
         this.x = x;
     }
-
+    /**
+     * Getter of the X parameter
+     * @return Returns value of the coordinate X
+     */
     public int getX() {
         return this.x;
     }
 
+    /**
+     * Getter of the Y parameter
+     * @return Returns value of the coordinate Y
+     */
     public int getY() {
         return this.y;
     }
 
-    public int getImageWidth() {
-        return image.getWidth();
-    }
+    /**
+     * Get the height of the background image
+     * @return Height of the background image
+     */
     public int getImageHeight() {
         return image.getHeight();
     }
 
-
-    @Override
-    public String toString() {
-        return "Background: x=" + getX() + ", y =  " + getY() + ", height = " + image.getHeight() + " , width =  " + image.getWidth();
-    }
 
 }
 

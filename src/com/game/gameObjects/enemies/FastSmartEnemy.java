@@ -7,7 +7,9 @@ import com.game.gameObjects.Handler;
 import com.game.gameObjects.Trail;
 
 import java.awt.*;
-
+/**
+ * Class that represents smart enemy you may encounter during a game that moves faster than the smart enemy and is more unpredictable than SmartEnemy.
+ */
 public class FastSmartEnemy extends GameObject {
 
     private Handler handler;
@@ -20,11 +22,18 @@ public class FastSmartEnemy extends GameObject {
 
         this.handler = handler;
     }
-
+    /**
+     * Get bounds for this object
+     * @return rectangle that matches the size of this object image
+     */
     public Rectangle getBounds() {
         return new Rectangle((int) x, (int) y, 16, 16);
     }
 
+
+    /**
+     * Method to update status of this object and its variables
+     */
     public void tick() {
         x += velX;
         y += velY;
@@ -49,6 +58,10 @@ public class FastSmartEnemy extends GameObject {
         handler.addObject(new Trail(x, y, ID.Trail, handler, Color.BLUE, 19, 19, 0.05f));
     }
 
+    /**
+     * Renders graphic for this object
+     * @param g
+     */
     public void render(Graphics g) {
         g.setColor(Color.BLUE);
         g.fillRect((int) x, (int) y, 16, 16);

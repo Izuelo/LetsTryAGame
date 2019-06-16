@@ -6,13 +6,15 @@ import com.game.gameCore.ID;
 import com.game.gameObjects.Handler;
 import com.game.gameObjects.Player;
 import com.game.gameObjects.enemies.BasicEnemy;
-import com.game.gameObjects.enemies.BossEnemy;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
 
+/**
+ * Displays menu for the game
+ */
 public class Menu extends MouseAdapter {
 
     private Game game;
@@ -26,6 +28,10 @@ public class Menu extends MouseAdapter {
         this.hud = hud;
     }
 
+    /**
+     * Method that allows to take action after mouse button is released. Switching between gameState e.g. between Menu, Game and GameOver screen.
+     * @param e register event of clicking the mouse
+     */
     public void mouseReleased(MouseEvent e) {
         int mx = e.getX();
         int my = e.getY();
@@ -39,7 +45,6 @@ public class Menu extends MouseAdapter {
                 for (int i = 0; i < 3; i++) {
                     handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 60), -100, ID.BasicEnemy, handler, false));
                 }
-                handler.addObject(new BossEnemy((Game.WIDTH / 2 - 48), -110, ID.BossEnemy, handler));
             }
 
             //Help button
@@ -76,20 +81,33 @@ public class Menu extends MouseAdapter {
         }
     }
 
-    public void mousePressed(MouseEvent e) {
-
-    }
-
+    /**
+     * Method to check if mouse click happend withing a button
+     * @param mx x coordinate of mouse click
+     * @param my x coordinate of mouse click
+     * @param x x coordinate of a button
+     * @param y y coordinate of a button
+     * @param width width of a button
+     * @param height height of a button
+     * @return true if click happened withing a rectangle.
+     */
     private boolean mouseOver(int mx, int my, int x, int y, int width, int height) {
         if (mx > x && mx < x + width) {
             return my > y && my < y + height;
         } else return false;
     }
 
+    /**
+     * Method to update status of this object and its variables
+     */
     public void tick() {
 
     }
 
+    /**
+     * Renders different graphic for Menu depending on a state of game that is currently in.
+     * @param g
+     */
     public void render(Graphics g) {
         Font fnt = new Font("arial", Font.BOLD, 50);
         Font fnt2 = new Font("small", Font.BOLD, 30);
@@ -133,4 +151,6 @@ public class Menu extends MouseAdapter {
             g.drawString("Try again!", Game.WIDTH / 2 - 65, 390);
         }
     }
+
+
 }

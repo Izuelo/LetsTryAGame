@@ -10,7 +10,9 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
+/**
+ * Class that represents fast enemy (an asteroid) you may encounter during a game.
+ */
 public class FastEnemy extends GameObject {
 
     private Handler handler;
@@ -30,11 +32,17 @@ public class FastEnemy extends GameObject {
         velX = 4;
         velY = 8;
     }
-
+    /**
+     * Get bounds for this object
+     * @return rectangle that matches the size of this object image
+     */
     public Rectangle getBounds() {
         return new Rectangle((int) x, (int) y, 40, 38);
     }
 
+    /**
+     * Checking collision with PlayerBullet and removing this object if it occurs
+     */
     private void collision() {
         for (int i = 0; i < handler.getObject().size(); i++) {
 
@@ -48,7 +56,9 @@ public class FastEnemy extends GameObject {
         }
     }
 
-
+    /**
+     * Method to update status of this object and its variables
+     */
     public void tick() {
         x += velX;
         y += velY;
@@ -59,6 +69,10 @@ public class FastEnemy extends GameObject {
         collision();
     }
 
+    /**
+     * Renders graphic for this object
+     * @param g
+     */
     public void render(Graphics g) {
         g.drawImage(image, (int) x, (int) y, null);
     }
